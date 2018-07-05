@@ -1,7 +1,7 @@
 = simple_form_for(['admin', @item]) do |f|
   header.content-header.js-content-header
     - subnav_array = ['Attributes', 'Assets', 'Associations']
-    - subnav_array.concat ['Nested Table', 'Recent Changes'] if params[:action] == 'edit'
+    - subnav_array.concat ['Aromas', 'Release Notes', 'Recent Changes'] if params[:action] == 'edit'
     = render 'fae/shared/form_header', header: @klass_name, f: f, item: @item, cloneable: true, subnav: subnav_array, languages: true
 
   = render 'fae/shared/errors'
@@ -19,6 +19,10 @@
 
     = fae_input f, :slug, helper_text: 'text input (populated from name and vintage)'
 
+    = fae_input f, :seo_title
+
+    = fae_input f, :seo_description
+
     = fae_input f, :intro, helper_text: 'texterea', markdown: true
 
     = fae_input f, :body,
@@ -29,6 +33,8 @@
       markdown_supported: true
 
     = fae_input f, :description, helper_text: 'texterea', markdown: true
+
+    = fae_input f, :content, helper_text: 'texterea', html: true
 
     = fae_prefix f, :price, helper_text: 'prefix', prefix: '$', placeholder: '50.00'
 
@@ -46,6 +52,8 @@
 
     = fae_daterange f, [:show, :hide], label: 'Show/Hide', helper_text: 'daterange'
 
+    = fae_color_picker f, :color
+
     = fae_input f, :created_at, as: :hidden
 
   section.content#assets
@@ -62,7 +70,7 @@
 
     = fae_pulldown f, :wine, size: 'short', helper_text: 'pulldown short', collection: Wine.order(:name_en), label_method: :name_en
 
-    = fae_multiselect f, :acclaims, label_method: :publication, helper_text: 'mutliselect'
+    = fae_multiselect f, :acclaims, label_method: :publication, helper_text: 'multiselect with a long helper description to ensure that the multiselect actions can coexist peacefully'
 
     = fae_multiselect f, :selling_points, two_pane: true, helper_text: 'two-pane mutliselect'
 

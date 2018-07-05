@@ -7,7 +7,11 @@
  */
 Fae.form = {
   ready: function() {
+    // Mutate DOM to support two column labels for all standard inputs
+    this.makeTwoColumnLabels();
+
     this.dates.init();
+    this.color.init();
     this.text.init();
     this.select.init();
     this.checkbox.init();
@@ -23,9 +27,6 @@ Fae.form = {
       $('.input.file').fileinputer();
     }
 
-    // Mutate DOM to support two column labels for all standard inputs
-    this.makeTwoColumnLabels();
-
     // make all the hint areas
     $('.hint').hinter();
   },
@@ -35,7 +36,9 @@ Fae.form = {
       var $element = $(this);
 
       // Bail if we cannot find any helper_text
-      if (!$element.find('.helper_text').length) { return; }
+      if (!$element.find('.helper_text').length) {
+        $element.addClass('has_no_helper_text');
+      }
 
       // If present, get all DOM nodes w/ contents(), but ignore the .helper_text
       var label_inner = $element.contents().filter(function() {
