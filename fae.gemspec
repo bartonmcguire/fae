@@ -28,7 +28,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'devise', '>= 3.4.1'
   s.add_dependency 'jquery-ui-rails', '~> 4.2.1'
   s.add_dependency 'remotipart', '~> 1.3.1'
-  s.add_dependency 'carrierwave'
   s.add_dependency 'rmagick', '~> 2.13.3'
   s.add_dependency 'judge', '~> 2.1.1'
   s.add_dependency 'judge-simple_form', '~> 1.0.0'
